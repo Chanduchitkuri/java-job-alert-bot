@@ -18,6 +18,19 @@ import hashlib
 from datetime import datetime
 from bs4 import BeautifulSoup
 
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_web_server():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
+
 # # ─── CONFIG ───────────────────────────────────────────────
 # BOT_TOKEN = "8653797468:AAF49XcsruJbhellHExNdrVJjkWwcMzJqq4"
 # ADMIN_ID  = "2092031953"
@@ -247,6 +260,9 @@ if __name__ == "__main__":
     print("  Initializing 24/7 Enterprise Job Stream Filtering Pipeline")
     print("=" * 60)
     
+    
+     # Start the web server in a separate thread so the bot loop can still run
+    threading.Thread(target=run_web_server, daemon=True).start()
     init_db()
     
     # Run immediate check on initialization
@@ -257,3 +273,4 @@ if __name__ == "__main__":
     cmd_thread.start()
     
     run_scheduler()
+   
