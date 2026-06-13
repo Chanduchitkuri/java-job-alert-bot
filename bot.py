@@ -36,10 +36,11 @@ def run_web_server():
 # ADMIN_ID  = "2092031953"
 # DB_FILE   = "bot_data.db"
 
+
 # ─── CONFIG ───────────────────────────────────────────────
-# Safely pulls the token from the system environment variables
+# Looks for the Render variable first; if it's missing, it uses your token automatically!
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "8653797468:AAF49XcsruJbhellHExNdrVJjkWwcMzJqq4")
-CHAT_ID   = "2092031953"
+ADMIN_ID  = "2092031953"
 DB_FILE   = "bot_data.db"
 
 # ─── STRICT FILTERING CRITERIA ────────────────────────────
@@ -247,13 +248,22 @@ def check_for_commands():
         time.sleep(2)
 
 # ─── EXECUTION HANDOFF ────────────────────────────────────
+# def run_scheduler():
+#     # Continually executes tracking lookups hourly, 24 hours a day
+#     schedule.every(1).hours.do(check_feeds_for_new_jobs)
+#     print("[✓] 24/7 Hourly Monitoring Worker Thread Pool Attached.")
+#     while True:
+#         schedule.run_pending()
+#         time.sleep(10)
+        
 def run_scheduler():
-    # Continually executes tracking lookups hourly, 24 hours a day
-    schedule.every(1).hours.do(check_feeds_for_new_jobs)
-    print("[✓] 24/7 Hourly Monitoring Worker Thread Pool Attached.")
+    # Change it from .hour to .minutes for rapid testing!
+    schedule.every(5).minutes.do(check_feeds_for_new_jobs)
+    
+    print("[✓] Cron schedule established: Scanning live streams every 5 minutes.")
     while True:
         schedule.run_pending()
-        time.sleep(10)
+        time.sleep(1)
 
     if __name__ == "__main__":
         print("!!! THE BOT CODE HAS STARTED RUNNING !!!") # Add this line
