@@ -255,8 +255,10 @@ def run_scheduler():
         schedule.run_pending()
         time.sleep(10)
 
-   
    if __name__ == "__main__":
+    print("!!! THE BOT CODE HAS STARTED RUNNING !!!") # Add this line
+    # ... rest of your code
+  
     print("=" * 60)
     print("  Initializing 24/7 Enterprise Job Stream Filtering Pipeline")
     print("=" * 60)
