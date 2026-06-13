@@ -255,8 +255,8 @@ def run_scheduler():
         schedule.run_pending()
         time.sleep(10)
 
-   if __name__ == "__main__":
-    print("!!! THE BOT CODE HAS STARTED RUNNING !!!") # Add this line
+    if __name__ == "__main__":
+        print("!!! THE BOT CODE HAS STARTED RUNNING !!!") # Add this line
     # ... rest of your code
   
     print("=" * 60)
