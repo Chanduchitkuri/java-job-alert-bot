@@ -255,22 +255,40 @@ def run_scheduler():
         schedule.run_pending()
         time.sleep(10)
 
-if __name__ == "__main__":
+   
+   if __name__ == "__main__":
     print("=" * 60)
     print("  Initializing 24/7 Enterprise Job Stream Filtering Pipeline")
     print("=" * 60)
     
-    
-     # Start the web server in a separate thread so the bot loop can still run
-    threading.Thread(target=run_web_server, daemon=True).start()
+    # 1. Initialize the SQLite database
     init_db()
-    
-    # Run immediate check on initialization
-    check_feeds_for_new_jobs()
 
-    # Spin up listening loops
+    # 2. Start command listener FIRST so it doesn't miss anyone clicking /start
     cmd_thread = threading.Thread(target=check_for_commands, daemon=True)
     cmd_thread.start()
+    print("[✓] Context API polling worker active.")
+
+    # 3. Start the Web Server for Render
+    threading.Thread(target=run_web_server, daemon=True).start()
+    print("[✓] Flask health check server running.")
+
+    # 4. EXPLICIT STARTUP BROADCAST (Forces the bot to send a message right now)
+    startup_message = (
+        "✅ <b>Chandu's Job Alert Engine is officially ONLINE!</b>\n\n"
+        "☁️ Hosted 24/7 on Render Cloud.\n"
+        "🔍 Monitoring entry-level Software Engineer & Java Developer roles.\n"
+        "⏰ Next automated scan will run in 1 hour."
+    )
+    print("[*] Sending startup broadcast to active subscribers...")
+    broadcast_message_text = """🚀 <b>Java Job Alert Bot</b> is now running 24/7 in the cloud!\n\nType /jobs to fetch current matching openings instantly."""
     
+    # Send a quick direct message to you (Admin) to verify connectivity
+    send_telegram(ADMIN_ID, startup_message)
+    
+    # Send to all registered subscribers
+    for sub_id in get_subscribers():
+        send_telegram(sub_id, broadcast_message_text)
+
+    # 5. Run the background scheduler loop
     run_scheduler()
-   
