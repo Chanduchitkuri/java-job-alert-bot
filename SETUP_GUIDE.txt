@@ -1,0 +1,96 @@
+# ╔══════════════════════════════════════════════╗
+# ║   CHANDU'S JAVA JOB BOT — SETUP GUIDE       ║
+# ╚══════════════════════════════════════════════╝
+
+# ════════════════════════════════════════
+# OPTION 1: RUN ON YOUR PC / LAPTOP
+# ════════════════════════════════════════
+
+# Step 1: Install Python (if not installed)
+# Go to: https://www.python.org/downloads/
+# Download Python 3.11 or above → Install it
+# During install ✅ CHECK "Add Python to PATH"
+
+# Step 2: Open Command Prompt (CMD)
+# Press Windows Key + R → type "cmd" → Enter
+
+# Step 3: Install required libraries
+pip install requests beautifulsoup4 schedule python-telegram-bot
+
+# Step 4: Go to the bot folder
+cd Downloads\java_job_bot
+
+# Step 5: Run the bot
+python bot.py
+
+# ✅ You will see:
+#   Bot is now ONLINE!
+#   Daily alerts scheduled at 09:00 AM
+#   And you'll get a Telegram message immediately!
+
+# ⚠️ IMPORTANT: Keep CMD window open while bot runs.
+#    Bot stops if you close CMD or shut down PC.
+
+
+# ════════════════════════════════════════
+# OPTION 2: RUN FREE 24/7 ON PythonAnywhere
+# (Best option — runs even when PC is off!)
+# ════════════════════════════════════════
+
+# Step 1: Go to https://www.pythonanywhere.com
+# Step 2: Click "Create a Beginner account" (FREE)
+# Step 3: Sign up with your email
+
+# Step 4: After login → Click "Files" tab
+# Step 5: Click "Upload a file" → Upload bot.py
+
+# Step 6: Click "Bash" tab (opens terminal)
+# Step 7: Type these commands:
+pip install requests beautifulsoup4 schedule python-telegram-bot
+python bot.py &
+
+# Step 8: To make it run always (Task Scheduler):
+# Go to "Tasks" tab → Add Scheduled Task
+# Command: python /home/yourusername/bot.py
+# Set it to run: Daily
+
+# ✅ Now bot runs 24/7 for FREE!
+
+
+# ════════════════════════════════════════
+# OPTION 3: RUN FREE ON Google Colab
+# (Easiest — no install needed!)
+# ════════════════════════════════════════
+
+# Step 1: Go to https://colab.research.google.com
+# Step 2: Click "New notebook"
+# Step 3: Paste this in first cell and run:
+
+!pip install requests beautifulsoup4 schedule python-telegram-bot
+
+# Step 4: Paste the bot.py code in second cell and run
+# ⚠️ Colab stops after 12 hours — use PythonAnywhere for 24/7
+
+
+# ════════════════════════════════════════
+# TELEGRAM COMMANDS (once bot is running)
+# ════════════════════════════════════════
+# /start  → Start the bot, see welcome message
+# /jobs   → Get today's Java job links RIGHT NOW
+# /help   → See all commands
+
+# ════════════════════════════════════════
+# DAILY ALERT SCHEDULE
+# ════════════════════════════════════════
+# Bot sends jobs automatically every day at 9:00 AM
+# To change time: open bot.py → find SEND_TIME = "09:00"
+#                 change to your preferred time e.g. "08:00"
+
+
+# ════════════════════════════════════════
+# WHAT THE BOT SENDS YOU EVERY DAY
+# ════════════════════════════════════════
+# ✅ 12+ direct apply links (Naukri, LinkedIn, Foundit, etc.)
+# ✅ Off-campus drive links (YoHire, OffCampusJobs4u)
+# ✅ Your skills summary to copy-paste in applications
+# ✅ Daily tips for faster applying
