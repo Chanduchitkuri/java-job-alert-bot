@@ -1,8 +1,0 @@
-# Ignore the local database file containing user chat IDs
-*.db
-bot_data.db
-subscribers.txt
-
-# Ignore Python cache files
-__pycache__/
-*.pyc
